@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/DataCredito/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="DataCredito" targetNamespace="http://www.example.org/DataCredito/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.example.org/DataCredito/" xmlns:pref="http://www.example.org/TipoValidacao">
+    	<xsd:import schemaLocation="WebContent/resources/TipoValidacao.xsd" namespace="http://www.example.org/TipoValidacao"></xsd:import>
+    	<xsd:element name="validacao" type="tns:validacaoRequest">
+
+    	</xsd:element>
+    	<xsd:element name="validacaoResponse"
+    		type="tns:validacaoResponse">
+
+    	</xsd:element>
+
+    	<xsd:complexType name="validacaoRequest">
+    		<xsd:sequence>
+    			<xsd:element name="validate" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+
+    	<xsd:complexType name="validacaoResponse">
+    		<xsd:sequence>
+    			<xsd:element name="validateResp" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+    			<xsd:element name="codigoResp" type="xsd:string" maxOccurs="1" minOccurs="1"></xsd:element>
+    		</xsd:sequence>
+    	</xsd:complexType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="validacaoRequest">
+    <wsdl:part element="tns:validacao" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="validacaoResponse">
+    <wsdl:part element="tns:validacaoResponse" name="parameters"/>
+  </wsdl:message>
+  <wsdl:portType name="DataCredito">
+    <wsdl:operation name="validacao">
+      <wsdl:input message="tns:validacaoRequest"/>
+      <wsdl:output message="tns:validacaoResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DataCreditoSOAP" type="tns:DataCredito">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="validacao">
+      <soap:operation soapAction="http://www.example.org/DataCredito/validacao"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DataCredito">
+    <wsdl:port binding="tns:DataCreditoSOAP" name="DataCreditoSOAP">
+      <soap:address location="http://www.example.org/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

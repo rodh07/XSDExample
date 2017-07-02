@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/TipoValidacao" xmlns:tns="http://www.example.org/TipoValidacao" elementFormDefault="qualified">
+
+    <complexType name="TipoValidacao">
+    	<sequence>
+    		<element name="idNum" type="string"></element>
+    		<element name="tipoNum" type="string"></element>
+    		<element name="Expedicao" type="string"></element>
+    	</sequence>
+    </complexType>
+</schema>
